@@ -1,1 +1,55 @@
-hello world
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>你喜欢我吗</title>
+</head>
+
+<body style="text-align:center; margin-top:100px; font-family:sans-serif; overflow:hidden;">
+
+  <h1>你喜欢朱金顺吗？❤️</h1>
+
+  <button onclick="alert('我也喜欢你 ❤️')" style="padding:12px 24px; font-size:16px;">
+    喜欢
+  </button>
+
+  <button id="noBtn" style="position:absolute; padding:12px 24px; font-size:16px;">
+    不喜欢
+  </button>
+
+  <script>
+    let btn = document.getElementById("noBtn");
+
+    // 随机移动函数（核心）
+    function moveBtn() {
+      let maxX = window.innerWidth - btn.offsetWidth;
+      let maxY = window.innerHeight - btn.offsetHeight;
+
+      let x = Math.random() * maxX;
+      let y = Math.random() * maxY;
+
+      btn.style.left = x + "px";
+      btn.style.top = y + "px";
+    }
+
+    // 💻 PC：鼠标靠近就跑
+    btn.addEventListener("mouseover", moveBtn);
+
+    // 📱 手机：点它就跑（点不到😂）
+    btn.addEventListener("touchstart", function (e) {
+      e.preventDefault(); // 防止点中
+      moveBtn();
+    });
+
+    // 👉 兜底：点击也跑（兼容部分设备）
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      moveBtn();
+    });
+  </script>
+
+</body>
+
+</html>
